@@ -1,6 +1,5 @@
 package org.example.wishlist.repositiory;
 
-import org.example.wishlist.model.ConnectionManager;
 import org.example.wishlist.model.Tag;
 import org.example.wishlist.model.Wish;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,12 +19,6 @@ public class WishtlistRepository implements IWishlistRepository {
     @Value("${spring.datasource.password}")
     private String password;
 
-    public void testConenction() {
-        Connection conn = ConnectionManager.getConnection();
-        if (conn == null) {
-            System.out.println("No connection available.");
-        }
-    }
 
     @Override
     public void addwish(Wish wish) {
