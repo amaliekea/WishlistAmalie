@@ -1,15 +1,21 @@
 package org.example.wishlist.repositiory;
-//hej
 import org.example.wishlist.model.Tag;
 import org.example.wishlist.model.Wish;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.util.List;
+import java.sql.*;
 
 @Repository("DEPARTMENT_REPOSITORY")
+@Lazy
 public class WishtlistRepository implements IWishlistRepository {
+    private static final Logger logger = LoggerFactory.getLogger(WishtlistRepository.class);
+
     @Value("${spring.datasource.url}")
     private String dbUrl;
 
@@ -30,6 +36,8 @@ public class WishtlistRepository implements IWishlistRepository {
         return List.of();
     }
 
+
+
     @Override
     public List<Tag> getAvaliableTags() {
         return List.of();
@@ -46,8 +54,22 @@ public class WishtlistRepository implements IWishlistRepository {
     }
 
     @Override
-    public void deleteWish(int wish_id) {
+    public void deleteDTOWish(int id) {
+        String sqlStringTag = "DELETE FROM tags WHERE tag_id = ?";
+        String sqlStringWish = "DELETE FROM wish WHERE tag_id = ?";
+        try (Connection connection = DriverManager.getConnection(dbUrl.trim(), username.trim(), password.trim())){
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlStringTag);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
 
+            PreparedStatement preparedStatementWish = connection.prepareStatement(sqlStringWish);
+            preparedStatementWish.setInt(1, id);
+            preparedStatementWish.executeUpdate();
+
+
+        } catch (SQLException e) {
+            logger.error("SQL exception occured", e);
+        }
     }
 
     @Override
