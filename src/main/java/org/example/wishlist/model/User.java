@@ -1,5 +1,5 @@
 package org.example.wishlist.model;
-//he
+//hej
 public class User {
     private int user_id;
     private String name;
