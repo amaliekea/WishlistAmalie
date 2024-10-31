@@ -6,17 +6,16 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
-
 import java.sql.Connection;
 import java.util.List;
 import java.sql.*;
-//he
+
 
 @Repository("DEPARTMENT_REPOSITORY")
 @Lazy
 public class WishtlistRepository implements IWishlistRepository {
     private static final Logger logger = LoggerFactory.getLogger(WishtlistRepository.class);
-//hej
+
     @Value("${spring.datasource.url}")
     private String dbUrl;
 
@@ -26,7 +25,7 @@ public class WishtlistRepository implements IWishlistRepository {
     @Value("${spring.datasource.password}")
     private String password;
 
-//hej
+
     @Override
     public void addwish(Wish wish) {
 
@@ -43,7 +42,7 @@ public class WishtlistRepository implements IWishlistRepository {
     public List<Tag> getAvaliableTags() {
         return List.of();
     }
-//hej
+
     @Override
     public List<Tag> getTags(int wish_id) {
         return List.of();
@@ -56,21 +55,21 @@ public class WishtlistRepository implements IWishlistRepository {
 
     @Override
     public void deleteDTOWish(int id) {
-        String sqlStringTag = "DELETE FROM tags WHERE tag_id = ?";
-        String sqlStringWish = "DELETE FROM wish WHERE tag_id = ?";
-        try (Connection connection = DriverManager.getConnection(dbUrl.trim(), username.trim(), password.trim())){
-            PreparedStatement preparedStatement = connection.prepareStatement(sqlStringTag);
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-
-            PreparedStatement preparedStatementWish = connection.prepareStatement(sqlStringWish);
-            preparedStatementWish.setInt(1, id);
-            preparedStatementWish.executeUpdate();
-
-
-        } catch (SQLException e) {
-            logger.error("SQL exception occured", e);
-        }
+//        String sqlStringTag = "DELETE FROM tags WHERE tag_id = ?";
+//        String sqlStringWish = "DELETE FROM wish WHERE tag_id = ?";
+//        try (Connection connection = DriverManager.getConnection(dbUrl.trim(), username.trim(), password.trim())){
+//            PreparedStatement preparedStatement = connection.prepareStatement(sqlStringTag);
+//            preparedStatement.setInt(1, id);
+//            preparedStatement.executeUpdate();
+//
+//            PreparedStatement preparedStatementWish = connection.prepareStatement(sqlStringWish);
+//            preparedStatementWish.setInt(1, id);
+//            preparedStatementWish.executeUpdate();
+//
+//
+//        } catch (SQLException e) {
+//            logger.error("SQL exception occured", e);
+//        }
     }
 
     @Override
