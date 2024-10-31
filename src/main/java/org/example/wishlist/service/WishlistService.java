@@ -11,6 +11,9 @@ public class WishlistService {
 
     public WishlistService(ApplicationContext context, @Value("${department.repository.impl}") String impl) {
         wishlistRepository = (IWishlistRepository) context.getBean(impl);
+    }
 
+    public void deleteDTOaWishlistItem(int wish_id){
+        wishlistRepository.deleteDTOWish(wish_id);
     }
 }
