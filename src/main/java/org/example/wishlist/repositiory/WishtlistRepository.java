@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.sql.*;
 
-//h
+
 @Repository("DEPARTMENT_REPOSITORY")
 @Lazy
 public class WishtlistRepository implements IWishlistRepository {
