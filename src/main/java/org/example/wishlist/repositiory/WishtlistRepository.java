@@ -1,4 +1,5 @@
 package org.example.wishlist.repositiory;
+
 import org.example.wishlist.model.Tag;
 import org.example.wishlist.model.Wish;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.util.List;
 import java.sql.*;
+
 
 @Repository("DEPARTMENT_REPOSITORY")
 @Lazy
@@ -25,6 +27,9 @@ public class WishtlistRepository implements IWishlistRepository {
     @Value("${spring.datasource.password}")
     private String password;
 
+    public WishtlistRepository() {
+
+    }
 
     @Override
     public void addwish(Wish wish) {
@@ -37,12 +42,11 @@ public class WishtlistRepository implements IWishlistRepository {
     }
 
 
-
     @Override
     public List<Tag> getAvaliableTags() {
         return List.of();
     }
-//hej
+
     @Override
     public List<Tag> getTags(int wish_id) {
         return List.of();
@@ -57,7 +61,7 @@ public class WishtlistRepository implements IWishlistRepository {
     public void deleteDTOWish(int id) {
         String sqlStringTag = "DELETE FROM tags WHERE tag_id = ?";
         String sqlStringWish = "DELETE FROM wish WHERE tag_id = ?";
-        try (Connection connection = DriverManager.getConnection(dbUrl.trim(), username.trim(), password.trim())){
+        try (Connection connection = DriverManager.getConnection(dbUrl.trim(), username.trim(), password.trim())) {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlStringTag);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
