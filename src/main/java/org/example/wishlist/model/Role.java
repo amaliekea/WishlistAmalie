@@ -2,11 +2,11 @@ package org.example.wishlist.model;
 
 public class Role {
     private int role_id;
-    private String name;
+    private String role_name;
 
-    public Role(int role_id, String name) {
+    public Role(int role_id, String role_name) {
         this.role_id = role_id;
-        this.name = name;
+        this.role_name = role_name;
     }
 
     public int getRole_id() {
@@ -17,19 +17,11 @@ public class Role {
         this.role_id = role_id;
     }
 
-    public String getName() {
-        return name;
+    public String getRole_name() {
+        return role_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "role_id=" + role_id +
-                ", name='" + name + '\'' +
-                '}';
+    public void setRole_name(String role_name) {
+        this.role_name = role_name;
     }
 }
