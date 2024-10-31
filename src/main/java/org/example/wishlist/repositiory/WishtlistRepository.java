@@ -28,6 +28,7 @@ public class WishtlistRepository implements IWishlistRepository {
 
     @Override
     public void addwish(Wish wish) {
+
     }
 
     @Override
@@ -41,7 +42,7 @@ public class WishtlistRepository implements IWishlistRepository {
     public List<Tag> getAvaliableTags() {
         return List.of();
     }
-
+//hej
     @Override
     public List<Tag> getTags(int wish_id) {
         return List.of();
@@ -51,7 +52,6 @@ public class WishtlistRepository implements IWishlistRepository {
     public void editWish(int wish_id) {
 
     }
-
 
     @Override
     public void deleteDTOWish(int id) {
@@ -65,6 +65,7 @@ public class WishtlistRepository implements IWishlistRepository {
             PreparedStatement preparedStatementWish = connection.prepareStatement(sqlStringWish);
             preparedStatementWish.setInt(1, id);
             preparedStatementWish.executeUpdate();
+
 
         } catch (SQLException e) {
             logger.error("SQL exception occured", e);
