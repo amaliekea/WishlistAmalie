@@ -1,6 +1,4 @@
 package org.example.wishlist.service;
-
-import org.example.wishlist.model.ConnectionManager;
 import org.example.wishlist.repositiory.IWishlistRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
