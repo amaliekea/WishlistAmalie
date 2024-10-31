@@ -16,7 +16,7 @@ import java.sql.*;
 @Lazy
 public class WishtlistRepository implements IWishlistRepository {
     private static final Logger logger = LoggerFactory.getLogger(WishtlistRepository.class);
-
+//hej
     @Value("${spring.datasource.url}")
     private String dbUrl;
 
