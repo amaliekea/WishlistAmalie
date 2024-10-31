@@ -21,7 +21,7 @@ public interface IWishlistRepository {
     void editWish(int wish_id); //editer et specifikt ønske
 
     //DELETE
-    void deleteWish(int wish_id); //slet et ønske
+    void deleteDTOWish(int wish_id); //slet et ønske
 
     void giveWish(int wish_id); //giv et ønske
 }
