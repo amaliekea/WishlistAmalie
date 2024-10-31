@@ -1,5 +1,4 @@
 package org.example.wishlist.service;
-
 import org.example.wishlist.repositiory.IWishlistRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -12,5 +11,6 @@ public class WishlistService {
 
     public WishlistService(ApplicationContext context, @Value("${department.repository.impl}") String impl) {
         wishlistRepository = (IWishlistRepository) context.getBean(impl);
+
     }
 }
