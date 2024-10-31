@@ -4,7 +4,7 @@ use wishlist;
 
 create table tag(name varChar(255) NOT NULL, tag_id INT AUTO_INCREMENT PRIMARY KEY);
 
-create table role(role_id int auto_increment primary key);
+create table role(role_id int auto_increment primary key), name varChar(255);
 
 create table user(name varChar(255), 
 user_id int PRIMARY KEY);
