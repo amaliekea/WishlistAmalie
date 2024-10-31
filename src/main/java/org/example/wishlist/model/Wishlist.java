@@ -1,24 +1,24 @@
 package org.example.wishlist.model;
 
 public class Wishlist {
-    private String name;
+    private String wishlist_name;
     private int wishlist_id;
     private int user_id;
     private int role_id;
 
-    public Wishlist(String name, int wishlist_id, int user_id, int role_id) {
-        this.name = name;
+    public Wishlist(String wishlist_name, int wishlist_id, int user_id, int role_id) {
+        this.wishlist_name = wishlist_name;
         this.wishlist_id = wishlist_id;
         this.user_id = user_id;
         this.role_id = role_id;
     }
 
-    public String getName() {
-        return name;
+    public String getWishlist_name() {
+        return wishlist_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setWishlist_name(String wishlist_name) {
+        this.wishlist_name = wishlist_name;
     }
 
     public int getWishlist_id() {
@@ -48,7 +48,7 @@ public class Wishlist {
     @Override
     public String toString() {
         return "Wishlist{" +
-                "name='" + name + '\'' +
+                "wishlist_name='" + wishlist_name + '\'' +
                 ", wishlist_id=" + wishlist_id +
                 ", user_id=" + user_id +
                 ", role_id=" + role_id +
