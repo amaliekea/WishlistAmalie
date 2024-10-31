@@ -26,7 +26,7 @@ public class WishtlistRepository implements IWishlistRepository {
     @Value("${spring.datasource.password}")
     private String password;
 
-
+//hej
     @Override
     public void addwish(Wish wish) {
 
