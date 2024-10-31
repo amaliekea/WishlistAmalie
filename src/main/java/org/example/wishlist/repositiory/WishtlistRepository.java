@@ -22,10 +22,11 @@ public class WishtlistRepository implements IWishlistRepository {
 
     @Override
     public void addwish(Wish wish) {
+
     }
 
     @Override
-    public List<Wish> getAllWishes() {
+    public List<Wish> getAllWishes(int wishlist_id) {
         return List.of();
     }
 
@@ -35,17 +36,22 @@ public class WishtlistRepository implements IWishlistRepository {
     }
 
     @Override
-    public List<Tag> getTags(Wish wish) {
+    public List<Tag> getTags(int wish_id) {
         return List.of();
     }
 
     @Override
-    public void updateWish(Wish wish) {
+    public void editWish(int wish_id) {
 
     }
 
     @Override
-    public void deleteWish(int id) {
+    public void deleteWish(int wish_id) {
+
+    }
+
+    @Override
+    public void giveWish(int wish_id) {
 
     }
 }
