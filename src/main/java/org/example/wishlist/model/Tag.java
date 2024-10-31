@@ -1,20 +1,20 @@
 package org.example.wishlist.model;
 
 public class Tag {
-    private String name;
+    private String tag_name;
     private int tag_id;
 
-    public Tag(String name, int tag_id) {
-        this.name = name;
+    public Tag(String tag_name, int tag_id) {
+        this.tag_name = tag_name;
         this.tag_id = tag_id;
     }
 
-    public String getName() {
-        return name;
+    public String getTag_name() {
+        return tag_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTag_name(String tag_name) {
+        this.tag_name = tag_name;
     }
 
     public int getTag_id() {
@@ -28,7 +28,7 @@ public class Tag {
     @Override
     public String toString() {
         return "Tag{" +
-                "name='" + name + '\'' +
+                "tag_name='" + tag_name + '\'' +
                 ", tag_id=" + tag_id +
                 '}';
     }
