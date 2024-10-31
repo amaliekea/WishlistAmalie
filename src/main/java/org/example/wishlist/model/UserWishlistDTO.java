@@ -9,7 +9,7 @@ public class UserWishlistDTO { //samler alle informationer omkring en wishlist
     private int role_id;
     private String role_name;
     List<WishTagDTO> wishes;
-
+//hej
     public UserWishlistDTO(String wishlist_name, int wishlist_id, int user_id, int role_id, String role_name, List<WishTagDTO> wishes) {
         this.wishlist_name = wishlist_name;
         this.wishlist_id = wishlist_id;
