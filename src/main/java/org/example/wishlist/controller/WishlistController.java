@@ -23,7 +23,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class WishlistController {
-
+//
     private final WishlistService wishlistService;
 
     public WishlistController(WishlistService wishlistService) {

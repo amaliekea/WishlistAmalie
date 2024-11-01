@@ -216,6 +216,8 @@ public class WishtlistRepository implements IWishlistRepository {
         return List.of();
     }
 
+    public void sletMig(){}
+
 
     @Override
     public List<Tag> getTags(int wish_id) {
