@@ -9,12 +9,19 @@ public class WishTagDTO { //samler alle informationer om et ønske
     private int price;
     private int wish_id;
     List<Integer> tagIds = new ArrayList<>();
+    private int wishlist_id;
 
-    public WishTagDTO(String wish_name, String description, int price, int wish_id) {
+    public WishTagDTO(String wish_name, String description, int price, int wish_id, List<Integer> tagIds, int wishlist_id) {
         this.wish_name = wish_name;
         this.description = description;
         this.price = price;
         this.wish_id = wish_id;
+        this.tagIds = tagIds;
+        this.wishlist_id = wishlist_id;
+    }
+
+    public WishTagDTO() {
+
     }
 
     public String getWish_name() {
@@ -55,6 +62,14 @@ public class WishTagDTO { //samler alle informationer om et ønske
 
     public void setTagIds(List<Integer> tagIds) {
         this.tagIds = tagIds;
+    }
+
+    public int getWishlist_id() {
+        return wishlist_id;
+    }
+
+    public void setWishlist_id(int wishlist_id) {
+        this.wishlist_id = wishlist_id;
     }
 
     @Override

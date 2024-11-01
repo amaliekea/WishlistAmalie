@@ -31,11 +31,86 @@ public class WishtlistRepository implements IWishlistRepository {
     private String password;
 
     public WishtlistRepository() {
+    }
 
+
+    @Override
+    public List<Tag> getAvaliableTags() {
+        List<Tag> avaliableTags = new ArrayList<>();
+        String sqlString = "SELECT * FROM tag";
+        try (Connection con = DriverManager.getConnection(dbUrl.trim(), username.trim(), password.trim())) {
+
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlString);
+
+            while (resultSet.next()) {
+                String name = resultSet.getString("tag_name");
+                int tagId = resultSet.getInt("tag_id");
+                avaliableTags.add(new Tag(name, tagId));
+            }
+
+        } catch (SQLException e) {
+            logger.error("SQL exception occurred", e);
+        }
+        return avaliableTags;
     }
 
     @Override
-    public void addwish(WishTagDTO w, UserWishlistDTO uw) {
+    public UserWishlistDTO getUserwishlistById(int wishlist_id) {
+        String sqlString = "SELECT t.name, t.wishlist_id, t.user_id, t.role_id, r.role_name FROM wishlist t JOIN role r ON r.role_id = t.role_id WHERE t.wishlist_id = ?";
+        String sqlwishes = "SELECT wish_name, description, price, wish_id, wishlist_id FROM wish WHERE wishlist_id=?";
+        String sqlTags = "SELECT tag_id FROM wish_tag WHERE wish_id=?";
+
+        List<Integer> tagIds = new ArrayList<>();
+        UserWishlistDTO userWishlistDTO = null;
+
+        try (Connection con = DriverManager.getConnection(dbUrl.trim(), username.trim(), password.trim())) {
+            PreparedStatement statement = con.prepareStatement(sqlString);
+            statement.setInt(1, wishlist_id);
+
+            PreparedStatement statement2 = con.prepareStatement(sqlwishes);
+            statement.setInt(1, wishlist_id);
+
+            PreparedStatement statement3 = con.prepareStatement(sqlTags);
+
+            ResultSet resultSet = statement.executeQuery();
+            ResultSet resultSet2 = statement2.executeQuery();
+
+            if (resultSet.next()) {
+                String wishlist_name = resultSet.getString("name");
+                int list_id = resultSet.getInt("wishlist_id");
+                int user_id = resultSet.getInt("user_id");
+                int role_id = resultSet.getInt("role_id");
+                String role_name = resultSet.getString("role_name");
+
+                ArrayList<WishTagDTO> wishTagDTOS = new ArrayList<>();
+                List<Integer> tags = new ArrayList<>();
+                while (resultSet2.next()) {
+                    String wish_name = resultSet2.getString("wish_name");
+                    String description = resultSet.getString("description");
+                    int price = resultSet2.getInt("price");
+                    int wish_id = resultSet2.getInt("wish_id");
+                    statement3.setInt(1, wish_id);
+                    ResultSet resultSet3 = statement3.executeQuery();
+                    while (resultSet3.next()) {
+                        int tagid = resultSet3.getInt("tag_id");
+                        tags.add(tagid);
+                    }
+                    wishTagDTOS.add(new WishTagDTO(wish_name, description, price, wish_id, tags, wishlist_id));
+                }
+                userWishlistDTO = new UserWishlistDTO(wishlist_name, list_id, user_id, role_id, role_name, wishTagDTOS);
+            }
+
+        } catch (SQLException e) {
+            logger.error("SQL exception occurred", e);
+        }
+
+        return userWishlistDTO;
+    }
+
+
+    @Override
+    public void addWish(WishTagDTO w, UserWishlistDTO uw) {
         String sqlString = "INSERT INTO wish(wish_name, description, price, wishlist_id, role_id, user_id, wish_id) VALUES(?,?,?,?,?,?,?)";
         String sqlTags = "INSERT INTO wish_tag(tag_id, wish_id) VALUES(?,?)";
         try (Connection con = DriverManager.getConnection(dbUrl.trim(), username.trim(), password.trim())) {
@@ -141,11 +216,6 @@ public class WishtlistRepository implements IWishlistRepository {
         return List.of();
     }
 
-
-    @Override
-    public List<Tag> getAvaliableTags() {
-        return List.of();
-    }
 
     @Override
     public List<Tag> getTags(int wish_id) {

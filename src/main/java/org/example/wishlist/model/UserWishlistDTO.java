@@ -19,6 +19,8 @@ public class UserWishlistDTO { //samler alle informationer omkring en wishlist
         this.wishes = wishes;
     }
 
+    public UserWishlistDTO(){}
+
     public String getWishlist_name() {
         return wishlist_name;
     }
