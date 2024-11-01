@@ -18,8 +18,6 @@ public interface IWishlistRepository {
 
     List<Tag> getAvaliableTags();//se alle mulige tags
 
-    void sletMig();
-
 
     List<Tag> getTags(int wish_id); //se tags på et specifikt ønske
 
