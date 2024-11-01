@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
 
@@ -66,7 +67,35 @@ public class WishtlistRepository implements IWishlistRepository {
     }
 
     @Override
-    public List<Wish> getAllWishes(int wishlist_id) {
+    public List<Wish> getAllWishes() {
+        List<Wish> wishes = new ArrayList<>();
+        String sql = "SELECT * FROM wish";
+
+        try (Connection connection = DriverManager.getConnection(dbUrl.trim(), username.trim(), password.trim());
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+
+            while (resultSet.next()) {
+                Wish wish = new Wish( // Opretter Wish-objektet
+                        resultSet.getString("wish_name"),
+                        resultSet.getString("description"),
+                        resultSet.getInt("price"),
+                        resultSet.getInt("wishlist_id"),
+                        resultSet.getInt("role_id"),
+                        resultSet.getInt("user_id"),
+                        resultSet.getInt("wish_id")
+                );
+                wishes.add(wish);
+            }
+        } catch (SQLException e) {
+            logger.error("SQL exception occurred", e);
+        }
+
+        return wishes;
+    }
+
+    @Override
+    public List<Wish> getWishlistById(int wishlist_id) {
         return List.of();
     }
 

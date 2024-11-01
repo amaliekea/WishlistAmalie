@@ -9,7 +9,9 @@ public interface IWishlistRepository {
     void addwish(WishTagDTO wishTagDTO, UserWishlistDTO uw); //Tilføj et ønske til en ønskeliste
 
     //READ
-    List<Wish> getAllWishes(int wishlist_id); //se alle ønkser fra en ønskelisten
+    List<Wish> getAllWishes(); //se alle ønkser fra en ønskelisten
+
+    List<Wish> getWishlistById(int wishlist_id);
 
     List<Tag> getAvaliableTags(); //se alle mulige tags
 
