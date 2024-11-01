@@ -11,11 +11,17 @@ public interface IWishlistRepository {
     public UserWishlistDTO getUserwishlistById(int wishlist_id);
 
     //READ
-    List<Wish> getAllWishes(int wishlist_id); //se alle ønkser fra en ønskelisten
+    List<Wish> getAllWishes(); //se alle ønkser fra en ønskelisten
+
+    List<WishTagDTO> getAllDTOWishes();
+
+    List<Wish> getWishlistById(int wishlist_id);
 
     List<Tag> getAvaliableTags(); //se alle mulige tags
 
     List<Tag> getTags(int wish_id); //se tags på et specifikt ønske
+
+    Wish getWishByID(int wish_id); //Se et specifikt ønske fra ID
 
     //UPDATE
     void editWish(int wish_id); //editer et specifikt ønske
