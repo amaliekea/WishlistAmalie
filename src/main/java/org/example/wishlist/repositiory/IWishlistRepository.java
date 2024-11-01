@@ -1,17 +1,17 @@
 package org.example.wishlist.repositiory;
-import org.example.wishlist.model.Tag;
-import org.example.wishlist.model.Wish;
-import org.example.wishlist.model.Wishlist;
+import org.example.wishlist.model.*;
 
 import java.util.List;
 
 public interface IWishlistRepository {
 
     //CREATE
-    void addwish(Wish wish); //Tilføj et ønske til en ønskeliste
+    void addwish(WishTagDTO wishTagDTO, UserWishlistDTO uw); //Tilføj et ønske til en ønskeliste
 
     //READ
-    List<Wish> getAllWishes(int wishlist_id); //se alle ønkser fra en ønskelisten
+    List<Wish> getAllWishes(); //se alle ønkser fra en ønskelisten
+
+    List<Wish> getWishlistById(int wishlist_id);
 
     List<Tag> getAvaliableTags(); //se alle mulige tags
 

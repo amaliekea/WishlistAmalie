@@ -33,7 +33,9 @@ public class WishlistController {
         //TODO kald den rigtige gettermetoder, når den er blevet lavet.
         //Wish w = wishlistService.getWishByName(name);
         //if (w != null) {
+
         //    wishlistService.deleteDTOWishlistItem(w);
+
         //}
         return "redirect:/";
     }
