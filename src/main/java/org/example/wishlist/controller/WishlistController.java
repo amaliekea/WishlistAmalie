@@ -1,5 +1,6 @@
 package org.example.wishlist.controller;
 
+import org.example.wishlist.model.Wish;
 import org.example.wishlist.service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("")
 public class WishlistController {
 
     private final WishlistService wishlistService;
@@ -16,10 +17,20 @@ public class WishlistController {
         this.wishlistService = wishlistService;
     }
 
+    @PostMapping("attractions/delete")
+    public String getWishToDelete(@RequestParam String name) {
+        //TODO kald den rigtige gettermetoder, når den er blevet lavet.
+        //Wish w = wishlistService.getWishByName(name);
+        //if (w != null) {
+        //    wishlistService.deleteDTOaWishlistItem(w);
+        //}
+        return "redirect:/";
+    }
+
     @PostMapping("/delete")
     public String deleteWishlistItem(@RequestParam int wish_Id) {
         wishlistService.deleteDTOaWishlistItem(wish_Id);
         //TODO indsæt korrekt redirection herunder.
-        return "redirect:/";
+        return "redirect:/show-wishlist";
     }
 }
