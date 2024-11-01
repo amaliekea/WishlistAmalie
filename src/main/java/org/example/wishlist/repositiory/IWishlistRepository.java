@@ -16,7 +16,8 @@ public interface IWishlistRepository {
 
     List<Wish> getWishlistById(int wishlist_id);
 
-    List<Tag> getAvaliableTags(); //se alle mulige tags
+    List<Tag> getAvaliableTags();//se alle mulige tags
+
 
     List<Tag> getTags(int wish_id); //se tags på et specifikt ønske
 

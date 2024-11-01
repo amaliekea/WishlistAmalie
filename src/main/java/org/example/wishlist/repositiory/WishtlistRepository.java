@@ -174,7 +174,7 @@ public class WishtlistRepository implements IWishlistRepository {
     @Override
     public List<WishTagDTO> getAllDTOWishes() {
         List<WishTagDTO> wishes = new ArrayList<>();
-        String sqlString = "SELECT wish_name, description, price, wish_id, user_id, role_id FROM wish";
+        String sqlString = "SELECT wish_name, description, price, wish_id, user_id, role_id, wishlist_id FROM wish";
         String sqlString2 = "SELECT tag_id FROM wish_tag WHERE wish_id ?";
 
         try (Connection connection = DriverManager.getConnection(dbUrl.trim(), username.trim(), password.trim())) {
@@ -188,6 +188,7 @@ public class WishtlistRepository implements IWishlistRepository {
                 int wishId = resultSet.getInt("wish_id");
                 int userId = resultSet.getInt("user_id");
                 int role_id = resultSet.getInt("role_id");
+                int wishlistId = resultSet.getInt("wishlist_id");
 
                 PreparedStatement preparedStatement = connection.prepareStatement(sqlString2);
                 preparedStatement.setInt(1, wishId);
@@ -199,10 +200,11 @@ public class WishtlistRepository implements IWishlistRepository {
                     wishTags.add(resultSetTags.getInt("tag_id"));
                 }
 
-                //Opret DTO for ønske med tilknyttet tags
-//                WishTagDTO dto = new WishTagDTO(wishName, description, price, wishId);
-//                dto.setTagIds(wishTags);
-//                wishes.add(dto);
+               // Opret DTO for ønske med tilknyttet tags
+                WishTagDTO dto = new WishTagDTO(wishName, description, price, wishId, wishTags, wishlistId);
+
+                dto.setTagIds(wishTags);
+                wishes.add(dto);
 
             }
         } catch (SQLException e) {
