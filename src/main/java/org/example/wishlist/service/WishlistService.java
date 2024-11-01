@@ -28,18 +28,11 @@ public class WishlistService {
     }
 
 
-    public List<Wish> getAllWishes() {
-        return wishlistRepository.getAllWishes();
 
-    }
     public List<WishTagDTO> getAllDTOWishes() {
         return wishlistRepository.getAllDTOWishes();
     }
 
-
-    public void addWish(WishTagDTO wishTagDTO, UserWishlistDTO userWishlist) {
-        wishlistRepository.addwish(wishTagDTO, userWishlist);
-    }
 
 
     public void deleteDTOaWishlistItem(int wish_id) {

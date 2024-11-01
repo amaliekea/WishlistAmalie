@@ -11,9 +11,8 @@ public interface IWishlistRepository {
     public UserWishlistDTO getUserwishlistById(int wishlist_id);
 
     //READ
-    List<Wish> getAllWishes(); //se alle ønkser fra en ønskelisten
 
-    List<WishTagDTO> getAllDTOWishes();
+   List<WishTagDTO> getAllDTOWishes();
 
     List<Wish> getWishlistById(int wishlist_id);
 
