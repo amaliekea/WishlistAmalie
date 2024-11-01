@@ -34,6 +34,7 @@ public class WishlistController {
     public String welcome(Model model) {
         model.addAttribute("users", wishlistService.getAllUsers());
         model.addAttribute("role", wishlistService.getAllRoles());
+        model.addAttribute("userId", -1);
         return "loginpage";
     }
 
@@ -51,11 +52,15 @@ public class WishlistController {
         return "redirect:/show-wishlist";
     }
 
-    @GetMapping("/showallwishes")
+//    @GetMapping("/showallwishes")
+//    public String showAllDTOWishes(@ModelAttribute User user, Model model) {
+////        List<WishTagDTO> wishes = wishlistService.getAllDTOWishes();
+//        return "show-wishlist";
+//    }
+    @PostMapping("/showallwishes")
     public String showAllDTOWishes(@ModelAttribute User user, Model model) {
-        List<WishTagDTO> wishes = wishlistService.getAllDTOWishes();
-        model.addAttribute("userid", user.getUser_id());
-        //
+        UserWishlistDTO userWishlistDTO = wishlistService.getUserwishlistByUserId(user.getUser_id());
+        model.addAttribute("userWishlistDTO", userWishlistDTO);
         return "show-wishlist";
     }
 
