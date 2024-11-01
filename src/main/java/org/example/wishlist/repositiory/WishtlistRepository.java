@@ -114,6 +114,7 @@ public class WishtlistRepository implements IWishlistRepository {
         String sqlString = "INSERT INTO wish(wish_name, description, price, wishlist_id, role_id, user_id, wish_id) VALUES(?,?,?,?,?,?,?)";
         String sqlTags = "INSERT INTO wish_tag(tag_id, wish_id) VALUES(?,?)";
         try (Connection con = DriverManager.getConnection(dbUrl.trim(), username.trim(), password.trim())) {
+            System.out.println(dbUrl + " " + username + " " + password);
 
             PreparedStatement statement = con.prepareStatement(sqlString, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, w.getWish_name());

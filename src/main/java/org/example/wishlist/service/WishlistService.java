@@ -27,13 +27,9 @@ public class WishlistService {
         return wishlistRepository.getUserwishlistById(wishlist_id);
     }
 
-
-
     public List<WishTagDTO> getAllDTOWishes() {
         return wishlistRepository.getAllDTOWishes();
     }
-
-
 
     public void deleteDTOaWishlistItem(int wish_id) {
         wishlistRepository.deleteDTOWish(wish_id);
