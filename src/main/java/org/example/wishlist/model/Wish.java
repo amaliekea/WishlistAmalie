@@ -35,7 +35,7 @@ public class Wish {
         this.description = description;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
