@@ -1,6 +1,7 @@
 package org.example.wishlist.controller;
 
 import org.example.wishlist.model.Wish;
+import org.example.wishlist.model.WishTagDTO;
 import org.example.wishlist.service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +23,8 @@ public class WishlistController {
     }
 
     @GetMapping("/")
-    public String showAllWishes(Model model) {
-        List<Wish> wishes = wishlistService.getAllWishes();
+    public String showAllDTOWishes(Model model) {
+        List<WishTagDTO> wishes = wishlistService.getAllDTOWishes();
         //
         return "show-wishlist";
     }

@@ -94,6 +94,48 @@ public class WishtlistRepository implements IWishlistRepository {
         return wishes;
     }
 
+
+    @Override
+    public List<WishTagDTO> getAllDTOWishes() {
+        List<WishTagDTO> wishes = new ArrayList<>();
+        String sqlString = "SELECT wish_name, description, price, wish_id, user_id, role_id FROM wish";
+        String sqlString2 = "SELECT tag_id FROM wish_tag WHERE wish_id ?";
+
+        try (Connection connection = DriverManager.getConnection(dbUrl.trim(), username.trim(), password.trim())) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlString);
+
+            while (resultSet.next()) {
+                String wishName = resultSet.getString("wish_name");
+                String description = resultSet.getString("description");
+                int price = resultSet.getInt("price");
+                int wishId = resultSet.getInt("wish_id");
+                int userId = resultSet.getInt("user_id");
+                int role_id = resultSet.getInt("role_id");
+
+                PreparedStatement preparedStatement = connection.prepareStatement(sqlString2);
+                preparedStatement.setInt(1, wishId);
+                ResultSet resultSetTags = preparedStatement.executeQuery();
+
+                // Liste til tags for dette specifikke ønske
+                List<Integer> wishTags = new ArrayList<>();
+                while (resultSetTags.next()) {
+                    wishTags.add(resultSetTags.getInt("tag_id"));
+                }
+
+                //Opret DTO for ønske med tilknyttet tags
+                WishTagDTO dto = new WishTagDTO(wishName, description, price, wishId);
+                dto.setTagIds(wishTags);
+                wishes.add(dto);
+
+            }
+        } catch (SQLException e) {
+            logger.error("SQL exception occurred", e);
+        }
+        return wishes;
+    }
+
+
     @Override
     public List<Wish> getWishlistById(int wishlist_id) {
         return List.of();
