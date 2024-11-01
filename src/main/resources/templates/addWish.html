@@ -37,8 +37,8 @@
     <br>
     <div>
         <th:block th:each="tag : ${avaliableTags}">
-            <input type="checkbox" th:field="*{tagIds}" th:value="${tag.id}"/>
-            <label th:for="${tag.id}" th:text="${tag.name}"></label><br>
+            <input type="checkbox" th:field="*{tagIds}" th:value="${tag.tag_id}"/>
+            <label th:for="${tag.tag_id}" th:text="${tag.tag_name}"></label><br>
         </th:block>
     </div>
 
