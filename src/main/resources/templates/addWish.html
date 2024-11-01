@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/main.css}" rel="stylesheet">
+    <title>Add Wish</title>
+</head>
+<body>
+<h1>Add Wish</h1>
+<form th:action="@{/addWish}" th:object="${wishdto}" method="post">
+    <!-- Navn -->
+    <label for="wish_name">Wish Name:</label>
+    <input id="wish_name" class="form-control"
+           type="text"
+           th:field="*{wish_name}"
+           placeholder="Enter wish name" />
+    <br>
+
+    <!-- Beskrivelse -->
+    <label for="description">Description:</label>
+    <input id="description" class="form-control"
+           type="text"
+           th:field="*{description}"
+           placeholder="Enter description" />
+    <br>
+
+    <!-- Pris -->
+    <label for="price">Price (in dollars):</label>
+    <input id="price" class="form-control"
+           type="number"
+           th:field="*{price}"
+           placeholder="Enter price" />
+    <br>
+
+    <!-- Tags -->
+    <label>Tags:</label>
+    <br>
+    <div>
+        <th:block th:each="tag : ${avaliableTags}">
+            <input type="checkbox" th:field="*{tagIds}" th:value="${tag.id}"/>
+            <label th:for="${tag.id}" th:text="${tag.name}"></label><br>
+        </th:block>
+    </div>
+
+    <br>
+    <button type="submit">Add Wish</button>
+</form>
+
+<!-- Afbryd-knap -->
+<form th:action="@{/show-wishlist}" method="get">
+    <button type="submit">Regret</button>
+</form>
+</body>
+</html>

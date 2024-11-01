@@ -6,7 +6,9 @@ import java.util.List;
 public interface IWishlistRepository {
 
     //CREATE
-    void addwish(WishTagDTO wishTagDTO, UserWishlistDTO uw); //Tilføj et ønske til en ønskeliste
+    void addWish(WishTagDTO wishTagDTO, UserWishlistDTO uw); //Tilføj et ønske til en ønskeliste
+
+    public UserWishlistDTO getUserwishlistById(int wishlist_id);
 
     //READ
     List<Wish> getAllWishes(int wishlist_id); //se alle ønkser fra en ønskelisten
