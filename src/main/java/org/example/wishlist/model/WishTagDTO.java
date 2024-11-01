@@ -1,5 +1,6 @@
 package org.example.wishlist.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WishTagDTO { //samler alle informationer om et ønske
@@ -7,14 +8,13 @@ public class WishTagDTO { //samler alle informationer om et ønske
     private String description;
     private int price;
     private int wish_id;
-    List<Tag> tags;
+    List<Integer> tagIds = new ArrayList<>();
 
-    public WishTagDTO(String wish_name, String description, int price, int wish_id, List<Tag> tags) {
+    public WishTagDTO(String wish_name, String description, int price, int wish_id) {
         this.wish_name = wish_name;
         this.description = description;
         this.price = price;
         this.wish_id = wish_id;
-        this.tags = tags;
     }
 
     public String getWish_name() {
@@ -49,12 +49,12 @@ public class WishTagDTO { //samler alle informationer om et ønske
         this.wish_id = wish_id;
     }
 
-    public List<Tag> getTags() {
-        return tags;
+    public List<Integer> getTagIds() {
+        return tagIds;
     }
 
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
+    public void setTagIds(List<Integer> tagIds) {
+        this.tagIds = tagIds;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class WishTagDTO { //samler alle informationer om et ønske
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", wish_id=" + wish_id +
-                ", tags=" + tags +
+                ", tagIds=" + tagIds +
                 '}';
     }
 }
